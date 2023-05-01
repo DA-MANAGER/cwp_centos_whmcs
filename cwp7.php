@@ -107,11 +107,8 @@ function cwp7_ClientArea($params)
     $link = $arry['msj']['details'];
     $linkautologin = $link[0]['url'];
     logModuleCall('cwpwhmcs', 'cwp7_LoginLink', 'https://' . $params["serverhostname"] . ':2304/v1/user_session' . $postdata, $answer);
-    logModuleCall('cwpwhmcs', 'cwp7_LoginLink', 'https://' . $params["serverhostname"] . ':2096/v1/user_session' . $postdata, $answer);
 
-
-    return <strong>"<a href=\"{$linkautologin}\" target=\"_blank\" style=\"color:#cc0000\"><input type= "Login to Control Panel" /></a>"</strong>; | 
-    return <strong>"<a href=\"{$linkautologin}\" target=\"_blank\" style=\"color:#cc0000\">Login to Webmail</a>"</strong>;
+    return "<a href=\"{$linkautologin}\" target=\"_blank\" font-weight=\"700\" style=\"color:#cc0000\">Login to your Control Panel</a>";
 }
 function cwp7_AdminLink($params) {
     $code = '<form action="https://'.$params["serverhostname"].':2031" method="post" target="_blank">
@@ -119,6 +116,8 @@ function cwp7_AdminLink($params) {
         </form>';
     return $code;
 }
+
+
 function cwp7_LoginLink($params) {
     $postvars = array('key' => $params["serveraccesshash"],'action' => 'list','user' => $params["username"],'timer'=>5);
     $postdata = http_build_query($postvars);
@@ -137,6 +136,9 @@ function cwp7_LoginLink($params) {
 
     echo "<a href=\"{$linkautologin}\" target=\"_blank\" style=\"color:#cc0000\">Control Panel</a>";
 }
+
+
+
 function cwp7_ChangePassword($params){
     $postvars = array('key' => $params["serveraccesshash"],'acction' => 'udp','user' => $params["username"], 'pass' =>$params["password"]);
     $postdata = http_build_query($postvars);
@@ -152,6 +154,10 @@ function cwp7_ChangePassword($params){
     logModuleCall('cwpwhmcs','ChangePassword','https://' . $params["serverhostname"] . ':2304/v1/changepass'.$postdata,$result);
     return $result;
 }
+
+
+
+
 function cwp7_ChangePackage($params){
     $postvars = array("key" => $params["serveraccesshash"],"action"=>'udp','user' => $params["username"],'package'=>$params["configoption1"].'@');
     $postdata = http_build_query($postvars);
@@ -170,6 +176,9 @@ function cwp7_ChangePackage($params){
     logModuleCall('cwpwhmcs','ChangePackage','https://' . $params["serverhostname"] . ':2304/v1/packages'.$postdata,$answer);
     return $result;
 }
+
+
+
 function cwp7_UsageUpdate($params) {
     $postvars = array('key' => $params["serveraccesshash"],'action' => 'list');
     $postdata = http_build_query($postvars);
