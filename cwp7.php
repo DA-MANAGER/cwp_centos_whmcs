@@ -108,7 +108,7 @@ function cwp7_ClientArea($params)
     $linkautologin = $link[0]['url'];
     logModuleCall('cwpwhmcs', 'cwp7_LoginLink', 'https://' . $params["serverhostname"] . ':2304/v1/user_session' . $postdata, $answer);
 
-    return "<a href=\"{$linkautologin}\" target=\"_blank\" font-weight=\"700\" style=\"color:#cc0000\">Login to your Control Panel</a>";
+    return "<a href=\"{$linkautologin}\" target=\"_blank\" font-weight=\"700\" style=\"color:#fff;background: #0273d4;padding: 10px 30px;font-weight:400;text-decoration:none;\"> <i class=\"fas fa-cog\"></i>  Login to CPanel</a>";
 }
 function cwp7_AdminLink($params) {
     $code = '<form action="https://'.$params["serverhostname"].':2031" method="post" target="_blank">
